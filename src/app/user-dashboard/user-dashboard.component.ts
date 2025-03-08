@@ -19,6 +19,7 @@ export class UserDashboardComponent implements OnInit, AfterViewInit  {
   rolesChart: Chart | undefined;
 
   @ViewChild('rolesChartCanvas') rolesChartCanvas!: ElementRef;
+  @ViewChild('addUserButton') addUserButton!: ElementRef;
 
   constructor(private userService: UserService, private dialog: MatDialog) { }
 
@@ -33,6 +34,9 @@ export class UserDashboardComponent implements OnInit, AfterViewInit  {
   }
 
   async openUserFormDialog() {
+    if (this.addUserButton?.nativeElement) {
+      this.addUserButton.nativeElement.blur();
+    }
     const { UserFormComponent } = await import('../user-form/user-form/user-form.component');
     
     const dialogRef = this.dialog.open(UserFormComponent, {
@@ -51,7 +55,6 @@ export class UserDashboardComponent implements OnInit, AfterViewInit  {
 
   updateChart() {
     if (!this.rolesChartCanvas || !this.rolesChartCanvas.nativeElement) {
-      console.warn('Canvas element is not available yet.');
       return;
     }
 
