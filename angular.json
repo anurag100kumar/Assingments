@@ -18,7 +18,6 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/user-dashboard",
-            "baseHref": "/Assingments/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -41,19 +40,20 @@
           },
           "configurations": {
             "production": {
+              "outputHashing": "all",
+              "baseHref": "/",
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "1MB",
                   "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "24KB",
+                  "maximumError": "24KB"
                 }
-              ],
-              "outputHashing": "all"
+              ]
             },
             "development": {
               "optimization": false,
